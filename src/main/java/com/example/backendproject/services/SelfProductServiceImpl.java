@@ -1,6 +1,7 @@
 package com.example.backendproject.services;
 
 import com.example.backendproject.dtos.GenericProductDto;
+import com.example.backendproject.exceptions.NotFoundException;
 import com.example.backendproject.models.Product;
 import com.example.backendproject.repositories.ProductRepository;
 import com.fasterxml.jackson.annotation.OptBoolean;
@@ -24,8 +25,12 @@ public class SelfProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ResponseEntity<?> getProductById(Integer id) {
-//        Optional<Product> p = productRepository.findById(id);
+    public ResponseEntity<?> getProductById(Integer id) throws NotFoundException {
+        Optional<Product> p = productRepository.findById(id);
+
+        if(p.isEmpty()){
+            throw new NotFoundException("Product with id: " + id + " doesn't exist.");
+        }
         return new ResponseEntity<>(productRepository.findById(id), HttpStatus.OK);
     }
 

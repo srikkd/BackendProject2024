@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class ExceptionDto {
     private String message;
     private HttpStatus errorCode;

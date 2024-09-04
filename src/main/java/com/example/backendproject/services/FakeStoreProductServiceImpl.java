@@ -1,5 +1,6 @@
 package com.example.backendproject.services;
 
+import com.example.backendproject.exceptions.NotFoundException;
 import com.example.backendproject.thirdpartyclients.productservice.fakestore.FakeStoreProductDto;
 import com.example.backendproject.dtos.GenericProductDto;
 import com.example.backendproject.models.Product;
@@ -34,7 +35,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ResponseEntity<?> getProductById(Integer id) {
+    public ResponseEntity<?> getProductById(Integer id) throws NotFoundException {
         return new ResponseEntity<>(
                 convertFakeStoreProductToGenericProduct(fakeStoreProductServiceClient.getProductById(id)),
                 HttpStatus.OK);

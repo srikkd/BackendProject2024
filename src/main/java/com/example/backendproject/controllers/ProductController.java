@@ -1,6 +1,7 @@
 package com.example.backendproject.controllers;
 
 import com.example.backendproject.dtos.GenericProductDto;
+import com.example.backendproject.exceptions.NotFoundException;
 import com.example.backendproject.models.Product;
 import com.example.backendproject.services.ProductService;
 import jakarta.transaction.HeuristicMixedException;
@@ -22,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getProductById(@PathVariable Integer id){
+    public ResponseEntity<?> getProductById(@PathVariable Integer id) throws NotFoundException {
         return productService.getProductById(id);
     }
 

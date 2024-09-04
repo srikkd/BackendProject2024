@@ -1,6 +1,7 @@
 package com.example.backendproject.thirdpartyclients.productservice.fakestore;
 
 import com.example.backendproject.dtos.GenericProductDto;
+import com.example.backendproject.exceptions.NotFoundException;
 import com.example.backendproject.models.Product;
 import com.example.backendproject.thirdpartyclients.productservice.ThirdPartyProductServiceClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,13 +30,17 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
     @Override
-    public FakeStoreProductDto getProductById(Integer id) {
+    public FakeStoreProductDto getProductById(Integer id) throws NotFoundException {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<FakeStoreProductDto> response =
                 restTemplate.getForEntity(fakeStoreSpecificProductRequestUrl, FakeStoreProductDto.class, id);
 
         FakeStoreProductDto fakeStoreProductDto = response.getBody();
+
+        if(fakeStoreProductDto == null){
+            throw new NotFoundException("Product with id: " + id + " doesn't exist.");
+        }
         return fakeStoreProductDto;
     }
 
