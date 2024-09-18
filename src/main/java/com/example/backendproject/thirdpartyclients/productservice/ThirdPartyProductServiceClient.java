@@ -15,7 +15,7 @@ public interface ThirdPartyProductServiceClient {
 
     FakeStoreProductDto addNewProduct(Product product);
 
-    FakeStoreProductDto updateProduct(int id, GenericProductDto product);
+    FakeStoreProductDto updateProduct(int id, Product product);
 
     FakeStoreProductDto deleteProduct(Integer id);
 

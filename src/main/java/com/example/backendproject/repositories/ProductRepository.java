@@ -17,5 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "UPDATE Product P SET P.title = :title WHERE P.id = :id", nativeQuery = false)
     void updateById(int id, String title);
 
-    Optional<List<Product>> findAllByCategory(String category);
+    @Query(value = "SELECT * FROM Product P WHERE P.category_id IN (SELECT c.id from Category c WHERE c.name = :categoryName)", nativeQuery = true)
+    List<Product> findAllByCategory(String categoryName);
 }

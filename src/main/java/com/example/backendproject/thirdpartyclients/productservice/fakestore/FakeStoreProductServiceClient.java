@@ -76,10 +76,10 @@ public class FakeStoreProductServiceClient implements ThirdPartyProductServiceCl
     }
 
     @Override
-    public FakeStoreProductDto updateProduct(int id, GenericProductDto product) {
+    public FakeStoreProductDto updateProduct(int id, Product product) {
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpEntity<GenericProductDto> request = new HttpEntity<>(product);
+        HttpEntity<Product> request = new HttpEntity<>(product);
         RequestCallback requestCallback = restTemplate.httpEntityCallback(request);
         ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor =
                 restTemplate.responseEntityExtractor(FakeStoreProductDto.class);

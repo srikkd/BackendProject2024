@@ -4,9 +4,6 @@ import com.example.backendproject.dtos.GenericProductDto;
 import com.example.backendproject.exceptions.NotFoundException;
 import com.example.backendproject.models.Product;
 import com.example.backendproject.repositories.ProductRepository;
-import com.fasterxml.jackson.annotation.OptBoolean;
-import jakarta.persistence.Query;
-import jakarta.transaction.*;
 import org.hibernate.SharedSessionContract;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,16 +46,23 @@ public class SelfProductServiceImpl implements ProductService{
 //        product1.setTitle(product.getTitle());
 //        product1.setDescription(product.getDescription());
 //        product1.setImage(product.getImage());
-//        product1.setCategory(product.getCategory());
+//        product1.setCategory(product.getCategory().getName());
 //        product1.setPrice(product.getPrice());
+
+        //find how to pass the category object in the RequestBody JSON of POST request
+
+        //checking if the category from RequestBody exists already in Category Table
+        //if not, then create one
+
+        //save the Product given in RequestBody
 
         return new ResponseEntity<>(productRepository.save(product), HttpStatus.CREATED);
     }
 
     //improve updateProduct()
     @Override
-    public ResponseEntity<?> updateProduct(int id, GenericProductDto product) {
-        Product product1 = new Product(product.getTitle(), product.getDescription(), product.getCategory(), product.getImage(), product.getPrice());
+    public ResponseEntity<?> updateProduct(int id, Product product) {
+        Product product1 = new Product(product.getTitle(), product.getDescription(), product.getImage(), product.getCategory(), product.getPrice());
         productRepository.updateById(id, product1.getTitle());
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

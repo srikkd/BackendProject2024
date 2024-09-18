@@ -36,9 +36,9 @@ public class SelfCategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public ResponseEntity<?> getProductsinCategory(String category) {
+    public ResponseEntity<?> getProductsinCategory(String categoryName) {
 
-        return new ResponseEntity<>(productRepository.findAllByCategory(category).get(), HttpStatus.OK);
+        return new ResponseEntity<>(productRepository.findAllByCategory(categoryName), HttpStatus.OK);
     }
 
     @Override

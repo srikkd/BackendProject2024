@@ -17,7 +17,8 @@ public interface ProductService {
 
     ResponseEntity<?> addNewProduct(Product product);
 
-    ResponseEntity<?> updateProduct(int id, GenericProductDto product);
+    //improve updateProduct()
+    ResponseEntity<?> updateProduct(int id, Product product);
 
     ResponseEntity<?> deleteProduct(Integer id);
 }

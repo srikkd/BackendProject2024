@@ -1,22 +1,22 @@
 package com.example.backendproject.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jdk.jfr.Enabled;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.*;
 
-@Entity
 @Data
-@NoArgsConstructor
+@Entity
 @AllArgsConstructor
-public class Product extends BaseModel{
+@NoArgsConstructor
+public class Product extends BaseModel {
     private String title;
     private String description;
     private String image;
-    private String category;
+    @ManyToOne(targetEntity = Category.class)
+//    @JoinColumn(name = "category_id")
+    private Category category;
     private double price;
+
 }

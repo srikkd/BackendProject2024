@@ -65,7 +65,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ResponseEntity<?> updateProduct(int id, GenericProductDto product) {
+    public ResponseEntity<?> updateProduct(int id, Product product) {
 
         GenericProductDto genericProductDto =
                 convertFakeStoreProductToGenericProduct(fakeStoreProductServiceClient.updateProduct(id, product));
